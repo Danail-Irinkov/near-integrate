@@ -1,21 +1,24 @@
 const { fetchDocs } = require('./fetchDocs')
 
 module.exports = {
-  title: 'Tailwind CSS',
-  description: 'Simplified Tailwindcss documentation site clone',
+  title: 'NEAR Integrations',
+  description: 'Simplified NEAR documentation',
   themeConfig: {
-    repo: 'https://github.com/haoranpb/vitepress-tailwind-documentation',
+    repo: 'https://github.com/Danail-Irinkov/near-integrate',
     pages: fetchDocs(),
     collections: {
-      'Getting started': [
-        'installation',
+      'RPC': [
+        'rpc-installation',
+        'rpc-getting-access-tokens',
         'upgrading-to-v2',
         'using-with-preprocessors',
         'optimizing-for-production',
         'browser-support',
         'intellisense',
       ],
-      'Core Concepts': [
+      'NEAR-API-JS': [
+	      'naj-installation',
+	      'naj-getting-access-tokens',
         'responsive-design',
         'dark-mode',
         'adding-base-styles',

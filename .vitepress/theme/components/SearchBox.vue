@@ -14,18 +14,18 @@
       Quick search<span class="hidden sm:inline"> for anything</span>
     </span>
 
-    <span
-      class="hidden sm:block text-gray-400 text-sm leading-5 py-0.5 px-1.5 border border-gray-300 rounded-md"
-    >
-      <span class="sr-only">Press </span>
-      <kbd class="font-sans">
-        <!-- TODO: Make for Windows -->
-        <abbr class="no-underline">⌘</abbr>
-      </kbd>
-      <span class="sr-only"> and </span>
-      <kbd class="font-sans">K</kbd>
-      <span class="sr-only"> to search</span>
-    </span>
+<!--    <span-->
+<!--      class="hidden sm:block text-gray-400 text-sm leading-5 py-0.5 px-1.5 border border-gray-300 rounded-md"-->
+<!--    >-->
+<!--      <span class="sr-only">Press </span>-->
+<!--      <kbd class="font-sans">-->
+<!--        &lt;!&ndash; TODO: Make for Windows &ndash;&gt;-->
+<!--        <abbr class="no-underline">⌘</abbr>-->
+<!--      </kbd>-->
+<!--      <span class="sr-only"> and </span>-->
+<!--      <kbd class="font-sans">K</kbd>-->
+<!--      <span class="sr-only"> to search</span>-->
+<!--    </span>-->
   </button>
 </template>
 

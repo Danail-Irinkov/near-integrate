@@ -14,16 +14,30 @@
       <nav
         class="px-1 pt-6 overflow-y-auto font-medium text-base sm:px-3 xl:px-5 lg:text-sm pb-10 lg:pt-10 lg:pb-14 lg:h-(screen-16)"
       >
+				<ul>
+					<li class="mb-8">
+						<h4
+							class="px-3 mb-3 lg:mb-3 uppercase tracking-wide font-semibold text-md lg:text-sm"
+						>
+							Overview
+						</h4>
+						<ul>
+							<li>
+								<NavItem :fileName="'index'" />
+							</li>
+						</ul>
+					</li>
+				</ul>
         <ul
           v-for="(collection, category) in $themeConfig.collections"
           :key="category"
         >
           <li class="mb-8">
-            <h5
-              class="px-3 mb-3 lg:mb-3 uppercase tracking-wide font-semibold text-sm lg:text-xs"
+            <h4
+              class="px-3 mb-3 lg:mb-3 uppercase tracking-wide font-semibold text-md lg:text-sm"
             >
               {{ category }}
-            </h5>
+            </h4>
             <ul v-for="fileName in collection" :key="fileName">
               <li>
                 <NavItem :fileName="fileName" />

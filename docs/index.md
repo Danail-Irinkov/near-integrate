@@ -1,43 +1,45 @@
 ---
-title: Getting started with Tailwind CSS
-description: Learn Tailwind the way that best matches your learning style.
+title: Getting started
+description: Learn how to integrate NEAR with almost any Web App with examples
 ---
 
-A simplified Tailwind CSS documentation site clone, built with [VitePress](https://vitepress.vuejs.org) and [Tailwind CSS](https://tailwindcss.com).
-
----
+A NEAR Protocol Integration CheatSheet, 
+built with [VitePress](https://vitepress.vuejs.org) 
+and [Tailwind CSS](https://tailwindcss.com)
+at [Github](https://github.com/Danail-Irinkov/near-integrate.git",)
 
 ## Why?
 
-I love building elegant websites, especially when both design and css are taken care of :stuck_out_tongue_winking_eye:. Inspired by [vuejs/blog](https://github.com/vuejs/blog).
+Reading all relevant docs and interpreting them to best practices,
+could be difficult for any beginner :stuck_out_tongue_winking_eye:.
+
+We will try to simplify the process by discussing the options.
 
 ## What's missing?
 
-As you can see on the website, many functionalities and styles are not implemented for simplicity.
+Examples for all coding languages. If you want to add examples with your favourite language, that would be Brilliant!
 
-## Development
+## Integrating NEAR
 
-### Add a new document
+### Choose a method for communication with the NEAR Protocol
+<center-content>
+<near-button title="HTTP (RPC)" route="/docs/rpc-installation"></near-button>
+<near-button title="NEAR-API-JS" route="/docs/naj-installation"></near-button>
+</center-content>
 
-Put your document inside `docs` folder. Note: nested directories are not supported.
+### Hints:
 
-And then edit `.vitepress/config.js`
+> If you are unable to import an npm library(near-api-js) in your project,
+you will have to develop your logic based on direct requests to the RPC.
 
-```js
-module.exports = {
-  ...
-  themeConfig: {
-    ...
-    collections: {
-      'New category': [
-        'your document',
-      ],
-      ...
-    },
-  },
-}
-```
+> The core method to interact with NEAR is to post http requests to the NEAR RPC API:
+https://docs.near.org/docs/api/rpc
 
-### Configuration
+> The easier method would be using
+the official Javascript SDK 'near-api-js'
+https://docs.near.org/docs/api/naj-quick-reference
 
-Take a look at [VitePress](https://vitepress.vuejs.org/guide/customization.html)'s documentation might help you further understand the structure.
+
+
+
+

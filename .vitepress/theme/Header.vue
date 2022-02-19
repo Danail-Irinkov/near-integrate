@@ -1,11 +1,11 @@
 <template>
   <div class="nav-bar">
     <div
-      class="items-center flex flex-none pl-4 sm:pl-6 xl:pl-8 lg:w-60 xl:w-72 border-b border-gray-200 lg:border-b-0"
+      class="items-center flex flex-none pl-4 sm:pl-2 xl:pl-8 lg:w-60 xl:w-72 border-b border-gray-200 lg:border-b-0"
     >
-      <a href="/" class="overflow-hidden w-10 md:w-auto text-2xl font-medium">
-        <span class="sr-only">Tailwind documentation clone</span>
-        <Logo class="w-auto h-6" />
+      <a href="/" class="overflow-hidden w-40 md:w-60 text-2xl font-medium">
+        <span class="sr-only">NEAR Integrate</span>
+        <Logo class="w-auto" />
       </a>
     </div>
 
