@@ -61,7 +61,6 @@ export default {
     this.getPrevNextPage()
   },
   mounted() {
-		console.log('$page', this.$page)
     this.flatPages = Object.values(this.$themeConfig.collections)
       .map((item) => Object.values(item))
       .flat()

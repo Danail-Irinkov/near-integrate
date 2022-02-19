@@ -27,7 +27,6 @@ export default {
 		}
 	},
 	created () {
-		console.log('this.$slots.default()[0]', this.$slots.default()[0].children)
 		this.tabs = this.$slots.default()[0].children.filter(child => {
 			return child?.type?.name === 'Tab' && child.props.title
 		})

@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "vitepress dev",
     "build": "vitepress build",
+	  "deploy": "vitepress build && firebase deploy",
     "serve": "vitepress serve"
   },
   "dependencies": {

@@ -1,4 +1,4 @@
 ---
-title: vitepress-tailwind-documentation
-description: Simplified Tailwindcss documentation site clone
+title: NEAR Integrate
+description: Integration Cheatsheet with examples
 ---
