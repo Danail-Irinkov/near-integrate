@@ -21,13 +21,21 @@ If not you will get errors in the browser console.
 #### Set .global & Buffer in your index.js
 ```js
 import { Buffer } from 'buffer'
+// OR load it from a CDN link
+// <script src="https://bundle.run/buffer"></script>
 
 if (window) {
     window.global = {}
     window.Buffer = Buffer
 }
 ```
+#### Firebase Functions
+Due to missing browser polyfills 'near-api-js' will not be able to compose and URL and redirect the User to the wallet out of the box
 
+```js
+// In Firebase Functions this might not work
+nearAPI.requestSignIn()
+```
 
 ## Configuring Endpoints
 You should create a function like this to switch the configuration between development and production environment

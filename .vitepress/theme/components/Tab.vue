@@ -12,6 +12,10 @@ export default {
 			type: Boolean,
 			default: false
 		},
+		code: {
+			type: String,
+			default: 'js'
+		},
 		title: {
 			type: String,
 			default: 'Tab'

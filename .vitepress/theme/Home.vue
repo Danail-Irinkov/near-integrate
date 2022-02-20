@@ -19,7 +19,7 @@
             </a>
 
             <OutLink
-              :href="$themeConfig.repo"
+              :href="theme.repo"
               class="text-gray-400 hover:text-gray-500 transition-colors duration-200"
             >
               <span class="sr-only">Repository on GitHub</span>
@@ -71,12 +71,17 @@
   </div>
 </template>
 
+<script setup>
+import { useData } from 'vitepress'
+const { page, theme } = useData()
+</script>
 <script>
 import SearchBox from './components/SearchBox.vue'
 import Logo from './components/Logo.vue'
 import IconGitHub from './icons/IconGitHub.vue'
 import IconCopy from './icons/IconCopy.vue'
 import OutLink from './components/OutLink.vue'
+import {useData} from 'vitepress'
 
 export default {
   components: { SearchBox, Logo, IconGitHub, IconCopy, OutLink },

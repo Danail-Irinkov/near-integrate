@@ -8,8 +8,7 @@ description: Learn how to make HTTP requests to NEAR
 - **Ability to execute HTTP Requests** - Most platforms offer such functionality to connect with 3rd party APIs
 - **Obtaining Access Tokens** - Wallet Login, LocalStorage or User Input
 - **Managing Access Tokens** - True Web3 Apps contain Full Access tokens within the User's Device
-- **NEAR Features** - Creating Accounts, transferring tokens, minting NFTs and more...
-- **A Great Idea** - It should make it easier for users to interact with NEAR and abide applicable T&C 
+- **A Great Idea** - Never underestimate a Great Idea :)
 ---
 
 ## RPC Endpoints
@@ -17,7 +16,6 @@ description: Learn how to make HTTP requests to NEAR
 - **mainnet** https://rpc.mainnet.near.org
 - **testnet** https://rpc.testnet.near.org
 - **betanet** https://rpc.betanet.near.org (may be unstable)
-- **localnet** http://localhost:3030
 
 ## Creating an API client
 

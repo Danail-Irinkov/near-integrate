@@ -3,7 +3,7 @@
     <div
       class="flex flex-col justify-between overflow-y-auto sticky max-h-(screen-16) pt-10 pb-6 top-16"
     >
-      <div class="mb-8" v-if="$page.headers">
+      <div class="mb-8" v-if="page.headers">
         <h5
           class="text-gray-900 uppercase tracking-wide font-semibold mb-3 text-sm lg:text-xs"
         >
@@ -12,7 +12,7 @@
 
         <ul class="overflow-x-hidden text-gray-500 font-medium">
           <li
-            v-for="section in $page.headers"
+            v-for="section in page.headers"
             :key="section.slug"
             :class="{ 'ml-4': section.level == 3 }"
           >
@@ -29,8 +29,12 @@
     </div>
   </div>
 </template>
-
+<script setup>
+import { useData } from 'vitepress'
+const { page, theme } = useData()
+</script>
 <script>
+
 export default {
   data() {
     return {
@@ -42,11 +46,15 @@ export default {
   },
   mounted() {
     this.initActiveHash()
-  },
+		window.addEventListener('scroll', this.handleScroll)
+	},
+	unmounted() {
+		window.removeEventListener('scroll', this.handleScroll)
+	},
   methods: {
     initActiveHash() {
-      this.activeHash = this.$page.headers
-        ? '#' + this.$page.headers[0].slug
+      this.activeHash = this?.page?.headers
+        ? '#' + this?.page?.headers[0]?.slug
         : null
     },
     handleScroll() {
@@ -56,8 +64,8 @@ export default {
       if (y < 0) {
         this.activeHash = this.initActiveHash()
       } else if (y + windowHeight >= document.body.scrollHeight) {
-        this.activeHash = this.$page.headers
-          ? '#' + this.$page.headers[this.$page.headers.length - 1].slug
+        this.activeHash = this.page.headers
+          ? '#' + this.page.headers[this.page.headers.length - 1].slug
           : null
       } else {
         const middle = y + windowHeight / 2
@@ -69,17 +77,13 @@ export default {
       }
     },
   },
+	computed: {
+	},
   watch: {
-    $page() {
+    page() {
       // At this point, the document haven't finished re-render
       this.initActiveHash()
     },
-  },
-  mounted() {
-    window.addEventListener('scroll', this.handleScroll)
-  },
-  unmounted() {
-    window.removeEventListener('scroll', this.handleScroll)
   },
 }
 </script>

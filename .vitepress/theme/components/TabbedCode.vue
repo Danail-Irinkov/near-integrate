@@ -1,10 +1,11 @@
 <template>
 	<div class='wrapper'>
 		<tabs :mode="mode" ref="tabs">
-			<tab v-for="(el, slot, index) in $slots"
-				:title="getTitle(slot)"
+			<tab v-for="(el, code, index) in $slots"
+				:code="code"
+				:title="getTitle(code)"
 				:show_tab="index === $refs?.tabs?.selectedIndex">
-				<slot :name="slot"></slot>
+				<slot :name="code"></slot>
 			</tab>
 		</tabs>
 <!--		<button class='change__style' @click='changeStyle()'>Dark Mode</button>-->
@@ -28,16 +29,15 @@ export default {
 	},
 	methods: {
 		getTitle (name) {
-			switch (name) {
-				case 'js':
-					return 'JS';
-				case 'node_js':
-					return 'Node JS';
-				case 'php':
-					return 'PHP';
-				default:
-					return 'No Title'
+			const mySentence = name.replace('_', ' ');
+			const words = mySentence.split(" ");
+			
+			for (let i = 0; i < words.length; i++) {
+				words[i] = words[i][0].toUpperCase() + words[i].substr(1);
 			}
+			let result = words.toString().replace(',', ' ')
+			
+			return result.replace('Js', 'JS').replace('Php', 'PHP')
 		},
 		changeStyle () {
 			if (this.mode === 'dark') {

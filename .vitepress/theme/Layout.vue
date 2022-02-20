@@ -1,7 +1,12 @@
 <template>
-  <Home v-if="isIndex" />
+  <Home v-if="page?.relativePath === 'index.md'" />
   <PageLayout v-else />
 </template>
+
+<script setup>
+import { useData } from 'vitepress'
+const { page, theme } = useData()
+</script>
 
 <script>
 import Home from './Home.vue'
@@ -9,10 +14,7 @@ import PageLayout from './PageLayout.vue'
 
 export default {
   components: { Home, PageLayout },
-  computed: {
-    isIndex() {
-      return this.$page.relativePath === 'index.md'
-    },
+	computed: {
   },
 }
 </script>

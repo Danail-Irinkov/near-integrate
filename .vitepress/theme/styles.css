@@ -151,7 +151,7 @@ pre[class*="language-"] {
 
 .token.function,
 .token.function .token.maybe-class-name {
-	color: #d1c069;
+	color: #ffd500;
 }
 
 .token.regex {

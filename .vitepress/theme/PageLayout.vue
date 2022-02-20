@@ -31,6 +31,10 @@
   </div>
 </template>
 
+<script setup>
+import { useData } from 'vitepress'
+const { page, theme } = useData()
+</script>
 <script>
 import Header from './Header.vue'
 import SideBar from './SideBar.vue'
@@ -69,12 +73,14 @@ export default {
         })
         .filter((item) => {
           // Only need the ones exist in TOC
-          return this.$page.headers.some(
+          return this?.page?.headers.some(
             (header) => '#' + header.slug === item.hash
           )
         })
     },
   },
+	computed: {
+	},
 }
 </script>
 

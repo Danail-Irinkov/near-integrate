@@ -4,15 +4,15 @@
       <h1
         class="inline-block text-3xl font-extrabold text-gray-900 tracking-tight"
       >
-        {{ $page.title }}
+        {{ page.title }}
       </h1>
-      <p class="mt-1 text-lg text-gray-500">{{ $page.description }}</p>
+      <p class="mt-1 text-lg text-gray-500">{{ page.description }}</p>
     </div>
 
     <Content class="prose" />
 
     <div class="mt-16 flex leading-6 font-medium text-gray-500"
-					v-if="$page.relativePath.indexOf('index.md') === -1">
+					v-if="page.relativePath.indexOf('index.md') === -1">
       <a
         v-if="prevPage"
         :href="prevPage.href"
@@ -42,6 +42,11 @@
   </div>
 </template>
 
+<script setup>
+import { useData } from 'vitepress'
+const { page, theme } = useData()
+</script>
+
 <script>
 import OutLink from './components/OutLink.vue'
 import { getNameFromPath } from './utils.js'
@@ -49,7 +54,6 @@ import { getNameFromPath } from './utils.js'
 export default {
   data() {
     return {
-      flatPages: null,
       prevPage: null,
       nextPage: null,
     }
@@ -61,16 +65,12 @@ export default {
     this.getPrevNextPage()
   },
   mounted() {
-    this.flatPages = Object.values(this.$themeConfig.collections)
-      .map((item) => Object.values(item))
-      .flat()
-
-    this.getPrevNextPage()
+		this.getPrevNextPage()
   },
   methods: {
     getPrevNextPage() {
       const pageIndex = this.flatPages.indexOf(
-        getNameFromPath(this.$page.relativePath)
+        getNameFromPath(String(this?.page?.relativePath))
       )
 
       const prevPageID = pageIndex > 0 ? this.flatPages[pageIndex - 1] : null
@@ -79,13 +79,18 @@ export default {
           ? this.flatPages[pageIndex + 1]
           : null
 
-      this.prevPage = this.$themeConfig.pages[prevPageID]
-      this.nextPage = this.$themeConfig.pages[nextPageID]
+      this.prevPage = this?.theme?.pages[prevPageID]
+      this.nextPage = this?.theme?.pages[nextPageID]
     },
   },
   computed: {
+		flatPages() {
+      return Object.values(this?.theme?.collections || {})
+				.map((item) => Object.values(item))
+				.flat()
+    },
     buildEditURL() {
-      return this.$themeConfig.repo + '/edit/main/' + this.$page.relativePath
+      return this?.theme?.repo + '/edit/main/' + this?.page?.relativePath
     },
   },
 }

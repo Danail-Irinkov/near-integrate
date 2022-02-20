@@ -13,12 +13,22 @@
 </template>
 
 <script>
-export default {
+import { useStore } from '../store/index'
+import { defineComponent } from 'vue';
+
+export default defineComponent({
 	props: {
 		mode: {
 			type: String,
 			default: 'light'
 		}
+	},
+	setup() {
+		const store = useStore()
+		// const store = {}
+		return {
+			store
+		};
 	},
 	data () {
 		return {
@@ -32,14 +42,29 @@ export default {
 		})
 	},
 	mounted () {
-		this.selectTab(0)
+		let selected_code = this.store.getCodeLang
+		this.selectCode(selected_code)
 	},
 	methods: {
+		selectCode (selected_code) {
+			let tab_index = this.tabs.findIndex((e)=> e.props.code === selected_code)
+			if (tab_index !== -1) {
+				this.selectTab(tab_index)
+			}
+		},
 		selectTab (i) {
 			this.selectedIndex = i
+			if (this.store.getCodeLang !== this.tabs[i].props.code)
+				this.store.setCodeLang(this.tabs[i].props.code)
+		}
+	},
+	watch: {
+		'store.code_lang' (newVal, oldVal) {
+			if (newVal !== oldVal)
+				this.selectCode(newVal)
 		}
 	}
-}
+})
 </script>
 
 <style lang="css">

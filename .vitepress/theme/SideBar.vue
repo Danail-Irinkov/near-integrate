@@ -14,27 +14,21 @@
       <nav
         class="px-1 pt-6 overflow-y-auto font-medium text-base sm:px-3 xl:px-5 lg:text-sm pb-10 lg:pt-10 lg:pb-14 lg:h-(screen-16)"
       >
-				<ul>
-					<li class="mb-8">
-						<h4
-							class="px-3 mb-3 lg:mb-3 uppercase tracking-wide font-semibold text-md lg:text-sm"
-						>
-							Overview
-						</h4>
-						<ul>
-							<li>
-								<NavItem :fileName="'index'" />
-							</li>
-						</ul>
+				<ul class="mb-4">
+					<li>
+						<NavItem :fileName="'index'" />
+					</li>
+					<li>
+						<NavItem :fileName="'integrations'" />
 					</li>
 				</ul>
-        <ul
-          v-for="(collection, category) in $themeConfig.collections"
+        <ul v-if="!!theme?.collections"
+          v-for="(collection, category) in theme.collections"
           :key="category"
         >
-          <li class="mb-8">
+          <li class="mb-6">
             <h4
-              class="px-3 mb-3 lg:mb-3 uppercase tracking-wide font-semibold text-md lg:text-sm"
+              class="px-3 mb-2 lg:mb-2 uppercase tracking-wide font-semibold text-md lg:text-sm"
             >
               {{ category }}
             </h4>
@@ -50,6 +44,10 @@
   </div>
 </template>
 
+<script setup>
+import { useData } from 'vitepress'
+const { page, theme } = useData()
+</script>
 <script>
 import NavItem from './components/NavItem.vue'
 
