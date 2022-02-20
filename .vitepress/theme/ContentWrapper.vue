@@ -34,7 +34,7 @@
     <div class="mt-12 border-t border-gray-200 pt-6 text-right">
       <OutLink
         class="mt-10 text-sm text-gray-500 hover:text-gray-900"
-        :href="buildEditURL"
+        :href="theme.repo + '/edit/main/' + page.relativePath"
       >
         Edit this page on GitHub
       </OutLink>
@@ -44,12 +44,38 @@
 
 <script setup>
 import { useData } from 'vitepress'
+import {ref, watchEffect} from 'vue'
+import {getNameFromPath} from './utils'
 const { page, theme } = useData()
+let prevPage = ref(null)
+let nextPage = ref(null)
+
+watchEffect(() => {
+	if(theme && theme.value.collections) {
+		const flatPages = Object.values(theme.value.collections)
+			.map((item) => Object.values(item))
+			.flat()
+	
+		const pageIndex = flatPages.indexOf(
+			getNameFromPath(page.value.relativePath)
+		)
+		
+		const prevPageID = pageIndex > 0 ? flatPages[pageIndex - 1] : null
+		const nextPageID =
+			pageIndex < flatPages.length - 1
+				? flatPages[pageIndex + 1]
+				: null
+		
+		prevPage.value = theme.value.pages[prevPageID]
+		nextPage.value = theme.value.pages[nextPageID]
+	}
+})
 </script>
 
 <script>
 import OutLink from './components/OutLink.vue'
-import { getNameFromPath } from './utils.js'
+// import { getNameFromPath } from './utils.js'
+// import {useData} from 'vitepress'
 
 export default {
   data() {
@@ -62,36 +88,21 @@ export default {
   emits: ['contentUpdated'],
   updated() {
     this.$emit('contentUpdated')
-    this.getPrevNextPage()
+    // this.getPrevNextPage()
   },
   mounted() {
-		this.getPrevNextPage()
+		// this.getPrevNextPage()
   },
   methods: {
-    getPrevNextPage() {
-      const pageIndex = this.flatPages.indexOf(
-        getNameFromPath(String(this?.page?.relativePath))
-      )
-
-      const prevPageID = pageIndex > 0 ? this.flatPages[pageIndex - 1] : null
-      const nextPageID =
-        pageIndex < this.flatPages.length - 1
-          ? this.flatPages[pageIndex + 1]
-          : null
-
-      this.prevPage = this?.theme?.pages[prevPageID]
-      this.nextPage = this?.theme?.pages[nextPageID]
-    },
+    // getPrevNextPage() {
+		//
+    // },
   },
   computed: {
-		flatPages() {
-      return Object.values(this?.theme?.collections || {})
-				.map((item) => Object.values(item))
-				.flat()
-    },
-    buildEditURL() {
-      return this?.theme?.repo + '/edit/main/' + this?.page?.relativePath
-    },
+    // buildEditURL() {
+		// 	if (this.theme)
+    //   return this.theme.repo + '/edit/main/' + this.page.relativePath
+    // },
   },
 }
 </script>

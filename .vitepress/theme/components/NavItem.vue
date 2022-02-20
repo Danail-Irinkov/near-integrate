@@ -3,7 +3,7 @@
     :href="theme.pages[fileName].href"
     class="px-3 py-1 transition-colors duration-200 relative block rounded-md"
     :class="[
-      isActive
+      getNameFromPath(page.relativePath) === fileName
         ? 'text-cyan-700 bg-cyan-50'
         : 'hover:text-gray-900 text-gray-500',
     ]"
@@ -14,11 +14,12 @@
 
 <script setup>
 import { useData } from 'vitepress'
+import { getNameFromPath } from '../utils.js'
 const { page, theme } = useData()
 </script>
 <script>
-import { getNameFromPath } from '../utils.js'
-
+// import { getNameFromPath } from '../utils.js'
+//
 export default {
   props: {
     fileName: {
@@ -27,9 +28,9 @@ export default {
     },
   },
   computed: {
-    isActive() {
-      return getNameFromPath(String(this?.page?.relativePath)) == this.fileName
-    },
+    // isActive() {
+    //   return getNameFromPath(String(this?.page?.relativePath)) == this.fileName
+    // },
   },
 }
 </script>

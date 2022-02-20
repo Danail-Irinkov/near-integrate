@@ -3,6 +3,7 @@ const { fetchDocs } = require('./fetchDocs')
 module.exports = {
   title: 'NEAR Integrations',
   description: 'Simplified NEAR documentation',
+	lastUpdated: true,
   themeConfig: {
     repo: 'https://github.com/Danail-Irinkov/near-integrate',
     pages: fetchDocs(),
@@ -35,5 +36,11 @@ module.exports = {
 	      'n-exchanges',
       ],
     },
+	  editLinks: true,
+	  editLinkText: 'Edit this page on GitHub',
+	  lastUpdated: 'Last Updated',
   },
+	vite: {
+		mode: 'development'
+	}
 }

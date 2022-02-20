@@ -40,7 +40,9 @@
           class="max-w-screen-lg text-lg sm:text-2xl sm:leading-10 font-medium mb-10 sm:mb-11"
         >
           An example first cheatsheet to integrating with
-          <code class="font-mono !text-gray-900 font-bold text-3xl">NEAR</code>
+          <a class="font-mono !text-gray-900 font-bold text-3xl"
+						 href="https://near.org"
+					>NEAR</a>
         </p>
 
         <div

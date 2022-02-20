@@ -1,9 +1,10 @@
+// eslint-disable-next-line vue/script-setup-uses-vars
 const colors = require('tailwindcss/colors')
 
 module.exports = {
   mode: 'jit',
-  purge: ['./.vitepress/theme/**/*.vue'],
-  darkMode: false, // or 'media' or 'class'
+  content: ['./.vitepress/theme/**/*.vue'],
+  darkMode: 'media', // or 'media' or 'class'
 	important: true,
   theme: {
     extend: {
@@ -12,7 +13,7 @@ module.exports = {
         violet: colors.violet,
         fuchsia: colors.fuchsia,
         lime: colors.lime,
-        'light-blue': colors.lightBlue,
+        'light-blue': colors.sky,
         rose: colors.rose,
         emerald: colors.emerald,
       },

@@ -33,7 +33,29 @@
 
 <script setup>
 import { useData } from 'vitepress'
+import {onMounted, ref} from 'vue'
 const { page, theme } = useData()
+let anchors = ref([])
+function handleContentUpdate() {
+	getAnchors()
+}
+
+function getAnchors() {
+	anchors.value = Array.prototype.slice
+		.call(document.querySelectorAll('.header-anchor'))
+		.map((item) => {
+			return { hash: item.hash, offsetTop: item.offsetTop }
+		})
+		.filter((item) => {
+		return page.value.headers.some(
+			(header) => ('#' + header.slug) === item.hash
+		)
+	})
+}
+
+onMounted(() => {
+	getAnchors()
+})
 </script>
 <script>
 import Header from './Header.vue'
@@ -46,7 +68,6 @@ import IconNavClose from './icons/IconNavClose.vue'
 export default {
   data() {
     return {
-      anchors: null,
       navOpen: false,
     }
   },
@@ -59,25 +80,8 @@ export default {
     IconNavClose,
   },
   mounted() {
-    this.getAnchors()
   },
   methods: {
-    handleContentUpdate() {
-      this.getAnchors()
-    },
-    getAnchors() {
-      this.anchors = Array.prototype.slice
-        .call(document.querySelectorAll('.header-anchor'))
-        .map((item) => {
-          return { hash: item.hash, offsetTop: item.offsetTop }
-        })
-        .filter((item) => {
-          // Only need the ones exist in TOC
-          return this?.page?.headers.some(
-            (header) => '#' + header.slug === item.hash
-          )
-        })
-    },
   },
 	computed: {
 	},
