@@ -12,7 +12,7 @@
     <Content class="prose" />
 
     <div class="mt-16 flex leading-6 font-medium text-gray-500"
-					v-if="page.relativePath.indexOf('index.md') === -1">
+					v-if="page?.relativePath.indexOf('index.md') === -1">
       <a
         v-if="prevPage"
         :href="prevPage.href"
@@ -52,10 +52,10 @@ let nextPage = ref(null)
 
 watchEffect(() => {
 	if(theme && theme.value.collections) {
-		const flatPages = Object.values(theme.value.collections)
+		let flatPages = Object.values(theme.value.collections)
 			.map((item) => Object.values(item))
 			.flat()
-	
+		flatPages = [...theme.value.intro, ...flatPages, ...theme.value.outro]
 		const pageIndex = flatPages.indexOf(
 			getNameFromPath(page.value.relativePath)
 		)

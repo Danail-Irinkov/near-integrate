@@ -1,3 +1,4 @@
+import DefaultTheme from 'vitepress/theme'
 import 'tailwindcss/tailwind.css'
 import './styles.css'
 import Layout from './Layout.vue'
@@ -8,6 +9,7 @@ import { createPinia } from 'pinia'
 
 
 export default {
+	DefaultTheme,
   Layout,
 	enhanceApp({ app }) {
 		app.use(createPinia())

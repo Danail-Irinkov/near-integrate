@@ -1,5 +1,6 @@
 <template>
-  <button
+	<AlgoliaSearchBox v-if="isAlgoliaSearch" :options="algolia" />
+  <button v-else
     type="button"
     class="group leading-6 font-medium flex items-center space-x-3 sm:space-x-4 w-full py-2"
   >
@@ -13,26 +14,29 @@
     >
       Quick search<span class="hidden sm:inline"> for anything</span>
     </span>
-
-<!--    <span-->
-<!--      class="hidden sm:block text-gray-400 text-sm leading-5 py-0.5 px-1.5 border border-gray-300 rounded-md"-->
-<!--    >-->
-<!--      <span class="sr-only">Press </span>-->
-<!--      <kbd class="font-sans">-->
-<!--        &lt;!&ndash; TODO: Make for Windows &ndash;&gt;-->
-<!--        <abbr class="no-underline">⌘</abbr>-->
-<!--      </kbd>-->
-<!--      <span class="sr-only"> and </span>-->
-<!--      <kbd class="font-sans">K</kbd>-->
-<!--      <span class="sr-only"> to search</span>-->
-<!--    </span>-->
   </button>
 </template>
 
+<script setup>
+import { useData } from 'vitepress'
+const { page, theme } = useData()
+</script>
 <script>
 import IconSearch from '../icons/IconSearch.vue'
+import AlgoliaSearchBox from './AlgoliaSearchBox.vue'
 
 export default {
-  components: { IconSearch },
+  components: { IconSearch, AlgoliaSearchBox },
+	computed: {
+		algolia() {
+			return (
+				this.theme?.algolia
+			)
+		},
+		
+		isAlgoliaSearch() {
+			return !!(this.algolia && this.algolia.apiKey && this.algolia.indexName)
+		}
+	},
 }
 </script>

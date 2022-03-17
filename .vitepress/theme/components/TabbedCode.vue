@@ -4,7 +4,7 @@
 			<tab v-for="(el, code, index) in $slots"
 				:code="code"
 				:title="getTitle(code)"
-				:show_tab="index === $refs?.tabs?.selectedIndex">
+				:show_tab="isTabSelected(index)">
 				<slot :name="code"></slot>
 			</tab>
 		</tabs>
@@ -28,6 +28,11 @@ export default {
 	created () {
 	},
 	methods: {
+		isTabSelected (index) {
+			let selected = index === this.$refs?.tabs?.selectedIndex
+			let no_options = index === 0 && this.$refs?.tabs?.selectedIndex > this.$slots.length
+			return selected || no_options
+		},
 		getTitle (name) {
 			const mySentence = name.replace('_', ' ');
 			const words = mySentence.split(" ");

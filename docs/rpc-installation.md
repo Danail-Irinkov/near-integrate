@@ -58,5 +58,5 @@ No contributions
 </template>
 </tabbed-code>
 
-## Official NEAR RPC Resources
+## Official NEAR Resources
 [NEAR RPC Documentation](https://docs.near.org/docs/api/rpc)

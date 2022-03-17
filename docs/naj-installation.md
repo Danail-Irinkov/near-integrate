@@ -5,11 +5,8 @@ description: Learn how to get NEAR-API-JS running in your project
 
 ## Requirements
 
-- **Autocomplete**. Intelligent suggestions for class names, as well as [CSS functions and directives](https://tailwindcss.com/docs/functions-and-directives).
-- **Linting**. Highlights errors and potential bugs in both your CSS and your markup.
-- **Hover Previews**. See the complete CSS for a Tailwind class name by hovering over it.
-- **Syntax Highlighting**. Provides syntax definitions so that Tailwind features are highlighted correctly.
-
+- **Node.js v16^**. [Download Node.js](https://nodejs.org/).
+- **Chrome/Firefox**. NEAR-API-JS is designed to run in the browser, but it requires some Node.js polyfills. Website bundlers like Webpack5 and Vite have removed these polyfills to reduce default bundle size. Check 'Caveats' to see how to handle such cases.
 ---
 
 ## Config
@@ -26,6 +23,7 @@ import { Buffer } from 'buffer'
 
 if (window) {
     window.global = {}
+    window.process = {}
     window.Buffer = Buffer
 }
 ```
@@ -108,7 +106,7 @@ import * as nearAPI from 'near-api-js'
 
 let config = getConfig('testnet')
 
-// Adding a keystore is optional for executing view calls
+// Adding a keystore is optional, but required for modifying the blockchain 
 let keyStore = new nearAPI.keyStores.BrowserLocalStorageKeyStore()
 config.deps = { keyStore: keyStore }
 
@@ -142,5 +140,5 @@ let accountId = walletAccount.getAccountId();
 </template>
 </tabbed-code>
 
-## Official NEAR RPC Resources
+## Official NEAR Resources
 [NEAR-API-JS Documentation](https://near.github.io/near-api-js/)

@@ -7,6 +7,8 @@ module.exports = {
   themeConfig: {
     repo: 'https://github.com/Danail-Irinkov/near-integrate',
     pages: fetchDocs(),
+    intro: ['index'],
+	  outro: ['testnet', 'subgraphs', 'indexers', 'integrations'],
     collections: {
 	    'NEAR-API-JS': [
 		    'naj-installation',
@@ -39,6 +41,10 @@ module.exports = {
 	  editLinks: true,
 	  editLinkText: 'Edit this page on GitHub',
 	  lastUpdated: 'Last Updated',
+	  algolia: {
+		  apiKey: 'your_api_key',
+		  indexName: 'index_name'
+	  }
   },
 	vite: {
 		mode: 'development'

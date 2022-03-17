@@ -39,7 +39,7 @@ const props = defineProps({
 })
 
 function initActiveHash() {
-	console.log('initActiveHash page', page)
+	// console.log('initActiveHash page', page)
 	activeHash.value = page.headers
 		? '#' + page.headers[0].slug
 		: null

@@ -1,7 +1,7 @@
 <template>
   <a
     :href="theme.pages[fileName].href"
-    class="px-3 py-1 transition-colors duration-200 relative block rounded-md"
+    class="max-w-fit px-2 py-1 transition-colors duration-200 relative block rounded-md"
     :class="[
       getNameFromPath(page.relativePath) === fileName
         ? 'text-cyan-700 bg-cyan-50'
