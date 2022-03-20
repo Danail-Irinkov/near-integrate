@@ -8,17 +8,15 @@ module.exports = {
     repo: 'https://github.com/Danail-Irinkov/near-integrate',
     pages: fetchDocs(),
     intro: ['index'],
-	  outro: ['testnet', 'subgraphs', 'indexers', 'integrations'],
+	  outro: ['testnet', 'access-tokens', 'subgraphs', 'indexers', 'integrations'],
     collections: {
 	    'NEAR-API-JS': [
 		    'naj-installation',
-		    'naj-access-tokens',
 		    'naj-features',
 		    'naj-examples',
 	    ],
       'RPC': [
         'rpc-installation',
-        'rpc-access-tokens',
         'rpc-wallet-redirects',
         'rpc-features',
         'rpc-examples',

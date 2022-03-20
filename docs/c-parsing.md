@@ -118,7 +118,7 @@ you will get a list of methods and/or probable interfaces of know contract types
 	methodNames: ['sayHi', 'say_hi', 'whoSaidHi', 'who_said_hi'],
     probableInterfaces: []
 }
-```
+````
 
 If you want to provide further hints into how to use the methods,  
 for ex. method parameters, typical deposit and results,  
