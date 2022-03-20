@@ -50,12 +50,6 @@ let rpc = axios.create({
 })
 ```
 </template>
-<template v-slot:php>
-
-```php
-No contributions
-```
-</template>
 </tabbed-code>
 
 ## Official NEAR Resources

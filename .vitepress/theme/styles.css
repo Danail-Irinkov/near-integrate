@@ -50,9 +50,17 @@ p {
 	margin-bottom: 0.75em!important;
 	white-space: pre-wrap;
 }
+p > a[href^="htt"] {
+	font-weight: 500!important;
+	font-size: 1.1em!important;
+}
 hr {
 	margin-top: 1.5em!important;
 	margin-bottom: 1.5em!important;
+}
+.tab > hr {
+	margin-top: 0!important;
+	margin-bottom: 0!important;
 }
 .pointer {
 	cursor: pointer!important;
@@ -75,7 +83,7 @@ hr {
 /*	top: calc(0.875em - 0.4em);*/
 /*	left: 0.5em;*/
 /*}*/
-div.language-js {
+div[class*="language-"] {
 	margin: 0!important;
 }
 pre[class*="language-"],

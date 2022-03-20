@@ -16,6 +16,12 @@ By the end of this course you will be able to Integrate all NEAR Features into a
 
 Links to the original resources and in-depth documentation is provided for all libraries.
 
+::: tip
+The NEAR Protocol and its APIs are undergoing constant development.  
+We have documented the most used APIs
+Contributors are welcome @ [NEAR Integrate](https://github.com/Danail-Irinkov/near-integrate)
+:::
+    
 ## Why NEAR Protocol?
 
 - Easy Wallet & Staking

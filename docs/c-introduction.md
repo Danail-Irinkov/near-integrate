@@ -45,4 +45,34 @@ which is very similar to JS and produces smaller bundles ( > ~0.2 MB )
 <near-button title="Assembly Script" route="/docs/c-assembly"></near-button>
 </center-content>
 
+## Parsing Contracts
+
+If your app aims to use already existing contracts from other users,  
+you will have to use [near-contract-parser](https://github.com/encody/near-contract-parser)   
+Alternatively available via [CDN](https://www.jsdelivr.com/package/npm/near-contract-parser)
+
+### Contract Parsing Demo
+[Search NEAR](https://searchnear.net)
+is search app that indexes all NEAR Transactions  
+and helps you identify the most used contracts on the network.
+
+You can discover Contracts, their methods and even get hints  
+about the parameters that the contract is being used with.
+
+[https://searchnear.net](https://searchnear.net)
+
+### Learn about Parsing Contracts
+
+<center-content>
+<near-button title="Parsing Contracts" route="/docs/c-parsing"></near-button>
+</center-content>
+
+
+## Scaling your NEAR contracts
+
+If your App needs to scale, NEAR allows for contracts to call each other.
+You can have one main contract, and multiple subcontracts.
+In this way you can utilize arbitrary amount of computing power ouf of the Protocol
+
+To learn more about scaling consider [near-contract-helper](https://github.com/near/near-contract-helper)   
 

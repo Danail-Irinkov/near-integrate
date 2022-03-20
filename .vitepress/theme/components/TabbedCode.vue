@@ -42,7 +42,7 @@ export default {
 			}
 			let result = words.toString().replace(',', ' ')
 			
-			return result.replace('Js', 'JS').replace('Php', 'PHP')
+			return result.replace('Js', 'JS').replace('Php', 'PHP').replace('Cdn', 'CDN')
 		},
 		changeStyle () {
 			if (this.mode === 'dark') {

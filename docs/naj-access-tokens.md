@@ -27,7 +27,10 @@ Any applications that have access to this key are called ***Custodian***.
 Nearly all people will **avoid** ***Custodian Apps***, due to the **High Risks and Trust** required to use them.
 
 ## Token Specifications
-TODO: Encryption
+
+The NEAR tokens use "Ed25519" encryption
+Ed25519 is an elliptic curve signing algorithm using EdDSA and Curve25519
+
 TODO: Public / Private key explanation 
 TODO: Generation of tokens
 TODO: Storage of tokens

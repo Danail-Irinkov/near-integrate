@@ -106,7 +106,7 @@ ul.tabs__header > li.tab__selected {
 }
 
 .tabs__dark .tab{
-	background-color: #555;
+	background-color: #1f2937;
 	color: #eee;
 }
 

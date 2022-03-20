@@ -25,6 +25,7 @@ module.exports = {
       ],
       'Contracts': [
 	      'c-introduction',
+	      'c-parsing',
 	      'c-assembly',
         'c-rust',
 	      'c-nfts',
