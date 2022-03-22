@@ -37,7 +37,7 @@ nearAPI.requestSignIn()
 
 The methods that redirect to the NEAR Waller are meant for Browser Usage
 However, if you need to get the redirect URL as a string,
-please refer to our [RPC Login Documentation](docs/rpc-wallet-redirects)
+please refer to our [RPC Login Documentation](/docs/rpc-wallet-redirects.html)
 
 ## Configuring Endpoints
 You should create a function like this to switch the configuration between development and production environment
@@ -131,8 +131,8 @@ let config = getConfig('testnet')
 let access_key = 'ed25519:30J08h8380h38U3J038z3830ub3U03J3030389H783g3Gg38g7G3G33JIG3O3KLJONCDO3NP2M2P3Mldsjdkfjdk'
 
 // Adding a keystore is optional for executing view calls
-const keyStore = new keyStores.InMemoryKeyStore()
-const keyPair = KeyPair.fromString(access_key)
+const keyStore = new nearAPI.keyStores.InMemoryKeyStore()
+const keyPair = nearAPI.KeyPair.fromString(access_key)
 await keyStore.setKey(network, account, keyPair) // Note the 'await'
 config.deps = { keyStore: keyStore }
 

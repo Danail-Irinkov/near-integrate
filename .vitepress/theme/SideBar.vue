@@ -87,7 +87,7 @@ export default {
 			{
 				console.log('page', page)
 				// console.log('page.relativePath', page.relativePath)
-				for (let key in this.theme.collections) {
+				for (let key in this?.theme?.collections) {
 					let collection = this.theme.collections[key]
 					for (let sub_col of collection) {
 						if (page?.relativePath.indexOf(sub_col) !== -1) {
