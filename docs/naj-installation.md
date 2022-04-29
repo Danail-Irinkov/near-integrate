@@ -16,17 +16,38 @@ If installing on a browser, make sure that the client environment has access to 
 If not you will get errors in the browser console.
 
 #### Set .global & Buffer in your index.js
+
+<tabbed-code>
+<template v-slot:js>
+
 ```js
 import { Buffer } from 'buffer'
-// OR load it from a CDN link
-// <script src="https://bundle.run/buffer"></script>
 
 if (window) {
     window.global = {}
-    window.process = {}
+    window.process = { env: {}}
+    window.exports = {}
     window.Buffer = Buffer
 }
 ```
+</template>
+<template v-slot:CDN>
+
+```html
+<script type="application/javascript" src="https://cdn.jsdelivr.net/gh/Danail-Irinkov/bufferUMD@master/dist/bundle.min.js"></script>
+<script>
+	if (window) {
+        window.global = {}
+        window.process = { env: {} }
+        window.exports = {}
+        window.Buffer = window.BufferUMD.Buffer
+    }
+</script>
+```
+</template>
+</tabbed-code>
+
+
 #### Firebase Functions
 Due to missing browser polyfills 'near-api-js' will not be able to compose and URL and redirect the User to the wallet out of the box
 
@@ -167,5 +188,7 @@ let accountId = walletAccount.getAccountId();
 </template>
 </tabbed-code>
 
-## Official NEAR Resources
-[NEAR-API-JS Documentation](https://near.github.io/near-api-js/)
+## Learn more
+[NEAR Features](/docs/naj-features.html)  
+
+[Official 'near-api-js' Documentation](https://near.github.io/near-api-js/)

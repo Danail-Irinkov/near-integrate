@@ -24,7 +24,7 @@ let balnce = utils.format.formatNearAmount(state.amount || 0 )
 let accessKeys = await account.getAccessKeys();
 ```
 
-## Making Function Call
+## Making Function Calls
 
 ```js
 import { providers } from 'near-api-js'
@@ -44,8 +44,25 @@ const result = providers.getTransactionLastResult(functionCallResponse)
 ## Transfer Tokens
 
 ```js
+import { utils } from 'near-api-js'
+
+let sender_account = 'devtest.testnet'
+let amount_yocto = utils.format.formatNearAmount(state.amount || 0 )
+
 const senderAccount = await near.account(sender_account);
 const result = await senderAccount.sendMoney(receiver_account, amount_yocto);
+```
+
+## Validating a NEAR Account input
+
+```js
+function validateAccountID(accountId: string){
+  return (
+    accountId.length >= 7 && // mininum length is 7, for ex. 'xx.near'
+    accountId.length <= 64 &&
+    /^(([a-z\d]+[-_])*[a-z\d]+\.)*([a-z\d]+[-_])*[a-z\d]+$/.test(accountId)
+  );
+}
 ```
 
 ## Mint NFT

@@ -30,7 +30,7 @@ export default {
 	methods: {
 		isTabSelected (index) {
 			let selected = index === this.$refs?.tabs?.selectedIndex
-			let no_options = index === 0 && this.$refs?.tabs?.selectedIndex > this.$slots.length
+			let no_options = index === 0 && (this.$refs?.tabs?.selectedIndex >= this.$slots.length)
 			return selected || no_options
 		},
 		getTitle (name) {
