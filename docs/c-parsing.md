@@ -34,6 +34,12 @@ import {parseContract} from 'near-contract-parser'
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/near-contract-parser@0.1.4/lib/index.min.js"></script>
+<script type="application/javascript" src="https://cdn.jsdelivr.net/gh/Danail-Irinkov/bufferUMD@master/dist/bundle.min.js">
+</script>
+<script>
+	window.Buffer = window.BufferUMD.Buffer
+	console.log('Buffer Test: ', Buffer.from([123,456]))
+</script>
 ```
 </template>
 </tabbed-code>
@@ -65,7 +71,7 @@ console.log('Contract Methods: ', parsed_contract.byMethod)
 <template v-slot:CDN>
 
 ```js
-const {code_base64} = await fetch('https://rpc.testnet.near.org', {
+const response = await fetch('https://rpc.testnet.near.org', {
 	method: 'POST',
 	headers: {
 		'Content-Type': 'application/json'

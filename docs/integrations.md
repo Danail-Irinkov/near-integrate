@@ -41,9 +41,10 @@ My `buffer` UMD bundle, mounts the buffer methods in window.BufferUMD.
 We had various issues ing other CDN links, so we had to fork our own.
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/Danail-Irinkov/bufferUMD@master/dist/bundle.min.js"></script>
+<script type="application/javascript" src="https://cdn.jsdelivr.net/gh/Danail-Irinkov/bufferUMD@master/dist/bundle.min.js">
 <script>
-  console.log('Buffer Test: ', window.BufferUMD.Buffer.from([123,456])) 
+	window.Buffer = window.BufferUMD.Buffer
+  console.log('Buffer Test: ', Buffer.from([123,456])) 
 </script>
 ```
 

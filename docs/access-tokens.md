@@ -44,41 +44,86 @@ when you want to make a new function call to a new contract.
 However, if you want to just add an access key follow along.
 To generate a new KeyPair you can use the 'near-api-js' utils:
 
-```js
-import { KeyPair } from 'near-api-js'
 
-const new_key_pair = KeyPair.fromRandom('ed25519')
-const public_key = new_key_pair.getPublicKey().toString()
-const private_key = new_key_pair.toString()
+## Generation of keys with [near-api-js](https://near.github.io/near-api-js/classes/key_stores_keystore.keystore.html)
+We can use the multiple methods to generate and sign keys.
+The most two popular ways are:
+
+
+```js
+import {KeyPair, keyStores} from 'near-api-js'
+
+const accessKey = KeyPair.fromRandom('ed25519')
+let public_key = accessKey.getPublicKey().toString()
+let private_key = accessKey.toString()
+
+const keyStore = new keyStores.BrowserLocalStorageKeyStore()
+// const keyStore = new keyStores.InMemoryKeyStore()
+await keyStore.setKey('testnet', [accountId], accessKey) // accountId to which the key will be added
+
+let getKey = await keyStore.getKey('testnet', [accountId])
+let removeKey = await keyStore.removeKey('testnet', [accountId])
 ```
 
-Then you can add the key to the blockchain using the NEAR Wallet.  
+Then you can now add the key to the blockchain using the NEAR Wallet.
 For ex.
 
 ```js
-window.open(`https://wallet.testnet.near.org/?contract_id=devtest.testnet&public_key=${public_key}`)
+window.open(`https://wallet.testnet.near.org/login?contract_id=devtest.testnet&public_key=${public_key}&success_url=${success_redirect_url}`)
 ```
 
 This will add a Function Call Key to your account,  
 which is able to call methods on 'devtest.testnet' with a maximum allowance of 0.25N
 
-### Storage of tokens
+:::tip
+If the adding of the key is successful you will see `&all_keys=....`
+in the query parameters in the redirect to the `success_url`.
+If the login attempt has failed and `all_keys` is empty, you should remove the generated key from the LocalStorage
+:::
 
-Most of web3 apps use the Browser's Localstorage to store the users keys,  
-because it is the most secure/private place.  
 
-To debug/explore Keys you will need to know how to read and write them to the LocalStorage.
+## Learn more on wallet redirects
+If you need to manually sign calls and transactions via the NEAR wallet, check our **Wallet Redirects Section**
 
-```js
-const keyStore = new nearAPI.keyStores.BrowserLocalStorageKeyStore()
-//const keyStore = new nearAPI.keyStores.InMemoryKeyStore()
+<center-content>
+<near-button title="Wallet Redirects" route="/docs/rpc-wallet-redirects"></near-button>
+</center-content>
 
-let accounts = await keyStore.getAccounts('testnet')
-let networks = await keyStore.getNetworks()
-let setKey = await keyStore.setKey('testnet', near_account, new_key_pair)
-let getKey = await keyStore.getKey('testnet', near_account)
-let removeKey = await keyStore.removeKey('testnet', near_account)
+
+For more details please refer to the 
+[KeyStore Documentation](https://near.github.io/near-api-js/classes/key_stores_keystore.keystore.html)
+
+## Generating Keys with [near-cli](https://github.com/near/near-cli#near-generate-key)
+
+This command will generate a key, store it in the local folder ~/.near-credentials
+
+```bash
+near generate-key xxx.testnet
 ```
 
-For more details please refer to the
-[KeyStore Documentation](https://near.github.io/near-api-js/classes/key_stores_keystore.keystore.html)
+Expect to see:
+`Key pair with ed25519:A4HsXgfQSHadfkT7jN4Mdt3J5XJvPbWVpk8XPCVXrYFV public key for an account "xxx.testnet"`
+
+Now you need to add this key to the blockchain, so you can use it to sign calls to a specific Contract:
+
+```bash
+near add-key [Your Account] ed25519:A4HsXgfQSHadfkT7jN4Mdt3J5XJvPbWVpk8XPCVXrYFV --contract-id [Contract Account]
+```
+
+Expect to see:
+```
+To see the transaction in the transaction explorer, please open this url in your browser
+https://explorer.testnet.near.org/transactions/Hke6JuGHRV...
+```
+
+### Storage of tokens
+
+As you can see you can generate keys freely, however have in mind where you store them!
+
+These keys will allow anybody to access your account.
+The DEFAULT storage place is only locally on your computer, either in a file or in local storage.
+For high value accounts using a Hardware Wallet is recommended.
+
+:::warn
+Never store Full Access keys on 3rd party databases
+:::
