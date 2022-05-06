@@ -11,7 +11,7 @@
     "devprod": "yarn build && yarn serve",
     "build": "vitepress build",
     "deploy": "vitepress build && firebase deploy",
-    "serve": "vitepress serve"
+    "serve": "vitep ress serve"
   },
   "dependencies": {
     "@docsearch/js": "3",

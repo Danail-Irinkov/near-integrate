@@ -158,6 +158,105 @@ near call [Contract Account] sayHi --accountId [Your Account]
 # Expect to see "[Your Account] said Hi!"
 ```
 
+## Contract with storing an Array of Data on the blockchain
+
+In cases such as subscriptions or other applications that need to securely store an array of objects we use the following boilerplate.  
+The example is from our [Bildr](https://www.bildr.com) integration by [Biuruk](https://github.com/probiruk).
+Create a file called `model.ts` in this fashion:
+
+```typescript
+import { PersistentUnorderedMap, u128, context } from "near-sdk-as";
+
+@nearBindgen
+export class Course {
+    id: string;
+    price: u128;
+    owner: string;
+    sold: u32;
+    public static fromPayload(payload: Course): Course {
+        const course = new Course();
+        course.id = payload.id;
+        course.price = payload.price;
+        course.sold = payload.sold;
+        course.owner = context.sender;
+        return course;
+    }
+    public incrementSoldAmount(): void {
+        this.sold = this.sold + 1;
+    }
+}
+
+export const listedCourses = new PersistentUnorderedMap<string, Course>("LISTED_COURSES");
+```
+
+This creates a Schema for the objects that we will list in the Array or more accurately `PersistentUnorderedMap` as per the Smart Contract naming system.
+Then you can have methods in your Smart Contract, which will work with this store of information:
+
+```typescript
+import { Course, listedCourses } from './model';
+import { ContractPromiseBatch, context } from 'near-sdk-as';
+
+export function setCourse(course: Course): void {
+    let storedCourse = listedCourses.get(course.id);
+    if (storedCourse !== null) {
+        throw new Error(`a course with ${course.id} already exists`);
+    }
+    listedCourses.set(course.id, Course.fromPayload(course));
+}
+
+export function getCourse(id: string): Course | null {
+    return listedCourses.get(id);
+}
+
+export function getCourses(): Course[] {
+    return listedCourses.values();
+}
+
+export function deleteCourse(id: string): void {
+    listedCourses.delete(id);
+}
+
+export function buyCourse(courseId: string): void {
+    const course = getCourse(courseId);
+    if (course == null) {
+        throw new Error("course not found");
+    }
+    if (course.price.toString() != context.attachedDeposit.toString()) {
+        throw new Error("attached deposit should equal to the course's price");
+    }
+    ContractPromiseBatch.create(course.owner).transfer(context.attachedDeposit);
+    course.incrementSoldAmount();
+    listedCourses.set(course.id, course);
+}
+```
+
+## Working with Dates in the Smart Contract
+
+Due to the NEAR virtual machine, not having an internal clock, that we can access with `new Date()`  
+we need to use the date utilities of the `near-sdk-as`
+
+Here is a Smart Contract which checks if the subscriber's prepaid period is expired or not.
+
+```typescript
+import { Subscriber, subscribers } from './model';
+import { datetime } from "near-sdk-as";
+import { PlainDateTime } from "assemblyscript-temporal";
+
+export function isSubscriber(currentUserID: string): bool {
+  const currentSubscriber = subscribers.get(currentUserID);
+  if (currentSubscriber) {
+    const date: i64 = parseInt(currentSubscriber.expirationDate) as i64;
+    const expDate = PlainDateTime.from(new Date(date).toISOString());
+    const currentDate = datetime.block_datetime();
+    const isExpired = PlainDateTime.compare(currentDate, expDate);
+    return isExpired > 0;
+  }
+  return false;
+}
+
+```
+This example is from our [Ghost CMS](https://ghost.org/) integration by [Ivan](https://github.com/XaVi7777/ghostcms_v1)
+
 ## Learn More
 
 For more elaborate examples including deposits, value and identity management have a look at these repositories:

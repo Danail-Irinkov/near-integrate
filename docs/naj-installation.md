@@ -58,7 +58,7 @@ nearAPI.requestSignIn()
 
 The methods that redirect to the NEAR Waller are meant for Browser Usage
 However, if you need to get the redirect URL as a string,
-please refer to our [RPC Login Documentation](/docs/rpc-wallet-redirects.html)
+please refer to our [RPC Login Documentation](/docs/wallet-redirects.html)
 
 ## Configuring Endpoints
 You should create a function like this to switch the configuration between development and production environment

@@ -65,6 +65,9 @@ let getKey = await keyStore.getKey('testnet', [accountId])
 let removeKey = await keyStore.removeKey('testnet', [accountId])
 ```
 
+For more details please refer to the
+[KeyStore Documentation](https://near.github.io/near-api-js/classes/key_stores_keystore.keystore.html)
+
 Then you can now add the key to the blockchain using the NEAR Wallet.
 For ex.
 
@@ -86,12 +89,9 @@ If the login attempt has failed and `all_keys` is empty, you should remove the g
 If you need to manually sign calls and transactions via the NEAR wallet, check our **Wallet Redirects Section**
 
 <center-content>
-<near-button title="Wallet Redirects" route="/docs/rpc-wallet-redirects"></near-button>
+<near-button title="Wallet Redirects" route="/docs/wallet-redirects"></near-button>
 </center-content>
 
-
-For more details please refer to the 
-[KeyStore Documentation](https://near.github.io/near-api-js/classes/key_stores_keystore.keystore.html)
 
 ## Generating Keys with [near-cli](https://github.com/near/near-cli#near-generate-key)
 
